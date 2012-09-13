@@ -8,3 +8,7 @@ dist
 .classpath
 .project
 .settings/
+.cache
+.target/
+bin/
+*~
