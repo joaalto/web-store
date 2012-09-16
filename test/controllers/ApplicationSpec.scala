@@ -26,10 +26,11 @@ class ApplicationSpec extends Specification {
   "Render product template" in {
     val productForm = Form(
       mapping(
-        "id" -> number,
-        "name" -> Forms.text)(Product.apply)(Product.unapply))
+        "Id" -> number,
+        "Name" -> Forms.text,
+        "Colour" -> Forms.text)(Product.apply)(Product.unapply))
 
-    val html = views.html.product(List(Product(1, "Pants")), productForm)
+    val html = views.html.product(List(Product(1, "Pants", "Green")), productForm)
 
     contentAsString(html) must contain("productRow0")
   }

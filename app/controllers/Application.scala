@@ -27,6 +27,14 @@ object Application extends Controller {
 
   val productForm = Form(
     mapping(
-      "id" -> number,
-      "name" -> text)(Product.apply)(Product.unapply))
+      "Id" -> number,
+      "Name" -> text,
+      "Colour" -> text)(Product.apply)(Product.unapply))
+
+  //  val productSearchForm = Form(fields)
+  //
+  //  val fields = tuple(
+  //    "Id" -> number,
+  //    "Name" -> text,
+  //    "Colour" -> text)
 }

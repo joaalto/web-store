@@ -11,15 +11,16 @@ import play.api.db._
 import play.api.Play.current
 import org.scalaquery.session.Session
 
-case class Product(id: Int, name: String)
+case class Product(id: Int, name: String, colour: String)
 
 object Product extends Table[Product]("PRODUCT") {
   lazy val database = Database.forDataSource(DB.getDataSource())
 
   def id = column[Int]("ID", O.PrimaryKey) // O.AutoInc
   def name = column[String]("NAME", O.NotNull, O.DBType("varchar(64)"))
+  def colour = column[String]("COLOUR", O.DBType("varchar(64)"))
 
-  def * = id ~ name <> (Product.apply _, Product.unapply _)
+  def * = id ~ name ~ colour <> (Product.apply _, Product.unapply _)
 
   def create(product: Product) {
     database withSession { implicit session: Session =>

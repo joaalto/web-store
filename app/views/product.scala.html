@@ -6,8 +6,9 @@
   
   @form(action = routes.Application.addProduct) {
 
-    @inputText(productForm("id"))
-    @inputText(productForm("name"))
+    @inputText(productForm("Id"))
+    @inputText(productForm("Name"))
+    @inputText(productForm("Colour"))
       
       <input id="addProductButton"
           type="submit"
@@ -20,10 +21,12 @@
           <tr>
             <th>Product id</th>
             <th>Product name</th>
+            <th>Product colour</th>
           </tr>
           <tr id="productRow@products.indexOf(product)">
             <td>@product.id</td>
             <td>@product.name</td>
+            <td>@product.colour</td>
           </tr>
           }
         </table>
