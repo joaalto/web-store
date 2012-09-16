@@ -3,22 +3,30 @@ package controllers
 import play.api._
 import play.api.mvc._
 import play.api.libs.iteratee.Enumerator
+import play.api.data.Form
+import play.api.data.Forms._
+import models.Product
 
 object Application extends Controller {
 
-  def index1 = Action { request =>
-    Ok("Got request [" + request + "]")
-    //    Ok(views.html.index("Your new application is ready."))
+  def products = Action {
+    Ok(views.html.product(Product.all(), productForm))
   }
 
-  def index = Action {
-    SimpleResult(
-      header = ResponseHeader(200, Map(CONTENT_TYPE -> "text/plain")),
-      body = Enumerator("Hello world!"))
+  def addProduct = Action { implicit request =>
+    Logger.debug("Request: " + request)
+    productForm.bindFromRequest().fold(
+      errors =>
+        BadRequest(views.html.errors(errors.toString)),
+      product => {
+        Product.create(product)
+        Logger.debug("Created product: " + product)
+        Redirect(routes.Application.products)
+      })
   }
 
-  def getProducts = TODO
-
-  def addProduct = TODO
-
+  val productForm = Form(
+    mapping(
+      "id" -> number,
+      "name" -> text)(Product.apply)(Product.unapply))
 }

@@ -9,7 +9,8 @@ object ApplicationBuild extends Build {
       
     val appDependencies = Seq(
         "org.scalaquery" %% "scalaquery" % "0.10.0-M1" withSources(),
-        "com.h2database" % "h2" % "1.3.168" withSources()
+        "com.h2database" % "h2" % "1.3.168" withSources(),
+        "org.specs2" %% "specs2" % "1.12.1" % "test" withSources()
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(

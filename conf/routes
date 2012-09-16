@@ -3,9 +3,9 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                           controllers.Application.products
 
-GET     /products                   controllers.Application.getProducts
+GET     /products                   controllers.Application.products
 POST    /products                   controllers.Application.addProduct
 
 # Map static resources from the /public folder to the /assets URL path

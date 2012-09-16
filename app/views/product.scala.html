@@ -1,0 +1,31 @@
+@(products: List[Product], productForm: Form[Product])
+
+@import helper._
+
+@main("Products") {
+  
+  @form(action = routes.Application.addProduct) {
+
+    @inputText(productForm("id"))
+    @inputText(productForm("name"))
+      
+      <input id="addProductButton"
+          type="submit"
+          value="Add product">
+  }
+
+    @if(products.size > 0) {
+        <table id="productTable">
+            @products.map { product =>
+          <tr>
+            <th>Product id</th>
+            <th>Product name</th>
+          </tr>
+          <tr id="productRow@products.indexOf(product)">
+            <td>@product.id</td>
+            <td>@product.name</td>
+          </tr>
+          }
+        </table>
+    }
+}
