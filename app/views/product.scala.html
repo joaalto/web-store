@@ -1,4 +1,8 @@
-@(products: List[Product], productForm: Form[Product])
+@(products:
+    List[Product],
+    productForm: Form[Product],
+    filteredProducts: List[Product],
+    searchProductForm: Form[Product])
 
 @import helper._
 
@@ -24,6 +28,34 @@
             <th>Product colour</th>
           </tr>
           <tr id="productRow@products.indexOf(product)">
+            <td>@product.id</td>
+            <td>@product.name</td>
+            <td>@product.colour</td>
+          </tr>
+          }
+        </table>
+    }
+    
+  @form(action = routes.Application.searchProducts) {
+
+    @inputText(searchProductForm("Id"))
+    @inputText(searchProductForm("Name"))
+    @inputText(searchProductForm("Colour"))
+      
+      <input id="searchProductsButton"
+          type="submit"
+          value="Search products">
+  }
+  
+  @if(filteredProducts != null) {
+        <table id="filteredProductTable">
+            @filteredProducts.map { product =>
+          <tr>
+            <th>Product id</th>
+            <th>Product name</th>
+            <th>Product colour</th>
+          </tr>
+          <tr id="filteredProductRow@filteredProducts.indexOf(product)">
             <td>@product.id</td>
             <td>@product.name</td>
             <td>@product.colour</td>
