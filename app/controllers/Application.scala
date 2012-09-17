@@ -27,11 +27,12 @@ object Application extends Controller {
   }
 
   val productForm = Form(getProductFieldMapping)
+  val productSearchForm = Form(getProductFieldMapping)
 
   def getProductFieldMapping = mapping(
-    "Id" -> number,
     "Name" -> text,
-    "Colour" -> text)(Product.apply)(Product.unapply)
+    "Colour" -> text,
+    "Size" -> text)(Product.apply)(Product.unapply)
 
   var filteredProducts: List[Product] = List()
 
@@ -45,7 +46,5 @@ object Application extends Controller {
         Redirect(routes.Application.products)
       })
   }
-
-  val productSearchForm = Form(getProductFieldMapping)
 
 }

@@ -1,5 +1,5 @@
-@(products:
-    List[Product],
+
+@(products: List[Product],
     productForm: Form[Product],
     filteredProducts: List[Product],
     searchProductForm: Form[Product])
@@ -10,9 +10,7 @@
   
   @form(action = routes.Application.addProduct) {
 
-    @inputText(productForm("Id"))
-    @inputText(productForm("Name"))
-    @inputText(productForm("Colour"))
+    @tags.productInputs(productForm)
       
       <input id="addProductButton"
           type="submit"
@@ -23,14 +21,14 @@
         <table id="productTable">
             @products.map { product =>
           <tr>
-            <th>Product id</th>
             <th>Product name</th>
-            <th>Product colour</th>
+            <th>Colour</th>
+            <th>Size</th>
           </tr>
           <tr id="productRow@products.indexOf(product)">
-            <td>@product.id</td>
             <td>@product.name</td>
             <td>@product.colour</td>
+            <td>@product.size</td>
           </tr>
           }
         </table>
@@ -38,10 +36,8 @@
     
   @form(action = routes.Application.searchProducts) {
 
-    @inputText(searchProductForm("Id"))
-    @inputText(searchProductForm("Name"))
-    @inputText(searchProductForm("Colour"))
-      
+    @tags.productInputs(searchProductForm)
+    
       <input id="searchProductsButton"
           type="submit"
           value="Search products">
@@ -51,14 +47,14 @@
         <table id="filteredProductTable">
             @filteredProducts.map { product =>
           <tr>
-            <th>Product id</th>
             <th>Product name</th>
-            <th>Product colour</th>
+            <th>Colour</th>
+            <th>Size</th>
           </tr>
           <tr id="filteredProductRow@filteredProducts.indexOf(product)">
-            <td>@product.id</td>
             <td>@product.name</td>
             <td>@product.colour</td>
+            <td>@product.size</td>
           </tr>
           }
         </table>

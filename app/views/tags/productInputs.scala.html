@@ -1,0 +1,8 @@
+
+@(productForm: Form[Product])
+
+@import helper._
+
+@inputText(productForm("Name"))
+@select(productForm("Size"), options(List("Small", "Medium", "Large")))
+@inputText(productForm("Colour"))
