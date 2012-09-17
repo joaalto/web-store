@@ -10,7 +10,7 @@ import play.api.Play.current
 import org.scalaquery.session.Session
 import play.api.Logger
 
-case class Product(name: String, colour: String, size: String)
+case class Product(name: String, colour: String, size: String, companyId: Int)
 
 object Product extends Table[Product]("PRODUCT") {
 
@@ -19,8 +19,9 @@ object Product extends Table[Product]("PRODUCT") {
   def name = column[String]("NAME", O.NotNull, O.DBType("varchar(64)"))
   def colour = column[String]("COLOUR", O.DBType("varchar(24)"))
   def size = column[String]("SIZE", O.DBType("varchar(12)"))
+  def companyId = column[Int]("COMPANY_ID")
 
-  def * = name ~ colour ~ size <> (Product.apply _, Product.unapply _)
+  def * = name ~ colour ~ size ~ companyId <> (Product.apply _, Product.unapply _)
 
   def create(product: Product) {
     database withSession { implicit session: Session =>
@@ -32,8 +33,20 @@ object Product extends Table[Product]("PRODUCT") {
     (for (product <- Product) yield product).list
   }
 
+  def products(companyId: Int) = database.withSession { implicit session: Session =>
+    (for {
+      product <- Product
+      if product.companyId is companyId
+    } yield product).list
+  }
+
   def query(params: Product) = database.withSession { implicit session: Session =>
     Logger.debug("Params: " + params)
-    (for (product <- Product if product.name is params.name) yield product).list
+    (for {
+      product <- Product
+      if product.name is params.name
+      if product.size is params.size
+      if product.colour is params.colour
+    } yield product).list
   }
 }

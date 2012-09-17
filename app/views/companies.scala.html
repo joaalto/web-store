@@ -1,0 +1,31 @@
+@(companies: List[Company], companyForm: Form[Company])
+
+@import helper._
+
+@main("Companies") {
+    @form(action = routes.CompanyController.addCompany) {
+        @inputText(companyForm("Id"))
+        @inputText(companyForm("Name"))
+
+        <input id="addCompanyButton"
+            type="submit"
+            value="Add company">
+    }
+    
+        @if(companies.size > 0) {
+        <table id="companyTable">
+            @companies.map { company =>
+          <tr>
+            <th>Company name</th>
+          </tr>
+          <tr id="companyTable@companies.indexOf(company)">
+            <td>
+                <a href="companies/@company.id">
+                    @company.name
+                </a>
+            </td>
+          </tr>
+          }
+        </table>
+    }
+}

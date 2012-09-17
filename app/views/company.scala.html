@@ -1,0 +1,25 @@
+@(company: Company, products: List[Product], productForm: Form[Product])
+
+@import helper._
+
+@main("Products") {
+ 
+    @company.id
+    @company.name
+  
+    @form(action = routes.ProductController.addProduct) {
+        @tags.productInputs(productForm)
+        
+        <input type="hidden"
+            id="companyId"
+            name="companyId"
+            value="@company.id">
+      
+        <input id="addProductButton"
+            type="submit"
+            value="Add product">
+    }
+
+    @tags.productTable(products, "products")
+    
+}

@@ -8,7 +8,7 @@
 
 @main("Products") {
   
-    @form(action = routes.Application.addProduct) {
+    @form(action = routes.ProductController.addProduct) {
         @tags.productInputs(productForm)
       
         <input id="addProductButton"
@@ -18,7 +18,7 @@
 
     @tags.productTable(products, "products")    
     
-    @form(action = routes.Application.searchProducts) {
+    @form(action = routes.ProductController.searchProducts) {
         @tags.productInputs(searchProductForm)
         
         <input id="searchProductsButton"
