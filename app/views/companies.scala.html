@@ -12,20 +12,20 @@
             value="Add company">
     }
     
-        @if(companies.size > 0) {
+    @if(companies.size > 0) {
         <table id="companyTable">
+            <tr>
+                <th>Company name</th>
+            </tr>
             @companies.map { company =>
-          <tr>
-            <th>Company name</th>
-          </tr>
-          <tr id="companyTable@companies.indexOf(company)">
-            <td>
-                <a href="companies/@company.id">
-                    @company.name
-                </a>
-            </td>
-          </tr>
-          }
+                <tr id="companyTable@companies.indexOf(company)">
+                    <td>
+                        <a href="companies/@company.id">
+                            @company.name
+                        </a>
+                    </td>
+                </tr>
+            }
         </table>
     }
 }
