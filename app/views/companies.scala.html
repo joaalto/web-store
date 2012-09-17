@@ -3,29 +3,35 @@
 @import helper._
 
 @main("Companies") {
-    @form(action = routes.CompanyController.addCompany) {
-        @inputText(companyForm("Id"))
-        @inputText(companyForm("Name"))
 
-        <input id="addCompanyButton"
-            type="submit"
-            value="Add company">
-    }
+    <div id="companies"
+        class="companyDiv">
     
-    @if(companies.size > 0) {
-        <table id="companyTable">
-            <tr>
-                <th>Company name</th>
-            </tr>
-            @companies.map { company =>
-                <tr id="companyTable@companies.indexOf(company)">
-                    <td>
-                        <a href="companies/@company.id">
-                            @company.name
-                        </a>
-                    </td>
+        @form(action = routes.CompanyController.addCompany) {
+            @inputText(companyForm("Id"))
+            @inputText(companyForm("Name"))
+    
+            <input id="addCompanyButton"
+                type="submit"
+                value="Add company"
+                onclick="">
+        }
+        
+        @if(companies.size > 0) {
+            <table id="companyTable">
+                <tr>
+                    <th>Company name</th>
                 </tr>
-            }
-        </table>
-    }
+                @companies.map { company =>
+                    <tr id="companyTable@companies.indexOf(company)">
+                        <td>
+                            <a href="companies/@company.id">
+                                @company.name
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
 }

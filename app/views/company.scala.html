@@ -4,21 +4,27 @@
 
 @main("Products") {
  
-    @company.id
-    @company.name
+    <h4>@company.name</h4>
   
-    @form(action = routes.ProductController.addProduct) {
-        @tags.productInputs(productForm)
+    <div id="products"
+        class="productDiv">
         
-        <input type="hidden"
-            id="companyId"
-            name="companyId"
-            value="@company.id">
-      
-        <input id="addProductButton"
-            type="submit"
-            value="Add product">
-    }
+        <h4>Add Product</h4>
+  
+        @form(action = routes.ProductController.addProduct) {
+            @tags.productInputs(productForm)
+            
+            <input type="hidden"
+                id="companyId"
+                name="companyId"
+                value="@company.id">
+          
+            <input id="addProductButton"
+                type="submit"
+                value="Add product">
+        }
+        
+        @tags.productTable(products, "products")
     
-    @tags.productTable(products, "products")    
+    </div>    
 }
