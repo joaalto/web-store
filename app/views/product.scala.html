@@ -8,55 +8,24 @@
 
 @main("Products") {
   
-  @form(action = routes.Application.addProduct) {
-
-    @tags.productInputs(productForm)
+    @form(action = routes.Application.addProduct) {
+        @tags.productInputs(productForm)
       
-      <input id="addProductButton"
-          type="submit"
-          value="Add product">
-  }
-
-    @if(products.size > 0) {
-        <table id="productTable">
-            @products.map { product =>
-          <tr>
-            <th>Product name</th>
-            <th>Colour</th>
-            <th>Size</th>
-          </tr>
-          <tr id="productRow@products.indexOf(product)">
-            <td>@product.name</td>
-            <td>@product.colour</td>
-            <td>@product.size</td>
-          </tr>
-          }
-        </table>
+        <input id="addProductButton"
+            type="submit"
+            value="Add product">
     }
-    
-  @form(action = routes.Application.searchProducts) {
 
-    @tags.productInputs(searchProductForm)
+    @tags.productTable(products, "products")    
     
-      <input id="searchProductsButton"
-          type="submit"
-          value="Search products">
-  }
+    @form(action = routes.Application.searchProducts) {
+        @tags.productInputs(searchProductForm)
+        
+        <input id="searchProductsButton"
+            type="submit"
+            value="Search products">
+    }
   
-  @if(filteredProducts != null) {
-        <table id="filteredProductTable">
-            @filteredProducts.map { product =>
-          <tr>
-            <th>Product name</th>
-            <th>Colour</th>
-            <th>Size</th>
-          </tr>
-          <tr id="filteredProductRow@filteredProducts.indexOf(product)">
-            <td>@product.name</td>
-            <td>@product.colour</td>
-            <td>@product.size</td>
-          </tr>
-          }
-        </table>
-    }
+    @tags.productTable(filteredProducts, "filteredProducts")
+  
 }

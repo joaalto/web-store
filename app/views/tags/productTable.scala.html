@@ -1,0 +1,20 @@
+@(products: List[Product], tableId: String)
+
+@import helper._
+
+    @if(products.size > 0) {
+        <table id="@tableId">
+            @products.map { product =>
+          <tr>
+            <th>Product name</th>
+            <th>Colour</th>
+            <th>Size</th>
+          </tr>
+          <tr id="@tableId@products.indexOf(product)">
+            <td>@product.name</td>
+            <td>@product.colour</td>
+            <td>@product.size</td>
+          </tr>
+          }
+        </table>
+    }
