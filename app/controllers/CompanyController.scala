@@ -15,8 +15,11 @@ object CompanyController extends Controller {
   }
 
   def company(companyId: Int) = Action {
-    Logger.debug("Find company: " + Company.find(companyId)(0))
-    Ok(views.html.company(Company.find(companyId)(0), Product.products(companyId), ProductController.productForm))
+    val comp = Company.find(companyId)(0)
+    Logger.debug("Find company: " + comp)
+    Ok(views.html.company(comp,
+      Product.products(companyId),
+      ProductController.productForm))
   }
 
   def addCompany = Action { implicit request =>
