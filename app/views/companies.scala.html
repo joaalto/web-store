@@ -8,7 +8,7 @@
         class="companyDiv">
     
         @form(action = routes.CompanyController.addCompany) {
-            @inputText(companyForm("Id"))
+            @inputText(companyForm("Id"), '_showConstraints -> false)
             @inputText(companyForm("Name"))
     
             <input id="addCompanyButton"
