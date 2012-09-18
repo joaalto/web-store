@@ -10,11 +10,11 @@ import models._
 
 object ProductController extends Controller {
 
-  def products = Action {
-    Ok(views.html.product(Product.all(), productForm, filteredProducts, productSearchForm))
-  }
+  //  def products = Action {
+  //    Ok(views.html.product(Product.all(), productForm, filteredProducts, productSearchForm))
+  //  }
 
-  def addProduct = Action { implicit request =>
+  def addProduct(companyId: Int) = Action { implicit request =>
     Logger.debug("Request: " + request)
 
     productForm.bindFromRequest().fold(
@@ -36,17 +36,17 @@ object ProductController extends Controller {
     "Size" -> text,
     "companyId" -> number)(Product.apply)(Product.unapply)
 
-  var filteredProducts: List[Product] = List()
+  //  var filteredProducts: List[Product] = List()
 
-  def searchProducts = Action { implicit request =>
-    productForm.bindFromRequest().fold(
-      errors =>
-        BadRequest(views.html.errors(errors.toString)),
-      product => {
-        filteredProducts = Product.query(product)
-        Logger.debug("Filtered: " + filteredProducts)
-        Redirect(routes.ProductController.products)
-      })
-  }
+  //  def searchProducts = Action { implicit request =>
+  //    productForm.bindFromRequest().fold(
+  //      errors =>
+  //        BadRequest(views.html.errors(errors.toString)),
+  //      product => {
+  //        filteredProducts = Product.query(product)
+  //        Logger.debug("Filtered: " + filteredProducts)
+  //        Redirect(routes.ProductController.products)
+  //      })
+  //  }
 
 }

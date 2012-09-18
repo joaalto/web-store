@@ -6,6 +6,8 @@
 
     <div id="companies"
         class="companyDiv">
+        
+        <h4>Add company</h4>
     
         @form(action = routes.CompanyController.addCompany) {
             @inputText(companyForm("Id"), '_showConstraints -> false)

@@ -3,28 +3,32 @@
 @import helper._
 
 @main("Products") {
+
+    <div id="company"
+        class="companyDiv">
  
-    <h4>@company.name</h4>
-  
-    <div id="products"
-        class="productDiv">
-        
-        <h4>Add Product</h4>
-  
-        @form(action = routes.ProductController.addProduct) {
-            @tags.productInputs(productForm)
+        <h4>@company.name</h4>
+      
+        <div id="products"
+            class="productDiv">
             
-            <input type="hidden"
-                id="companyId"
-                name="companyId"
-                value="@company.id">
-          
-            <input id="addProductButton"
-                type="submit"
-                value="Add product">
-        }
+            <h4>Add Product</h4>
+      
+            @form(action = routes.ProductController.addProduct(company.id)) {
+                @tags.productInputs(productForm)
+                
+                <input type="hidden"
+                    id="companyId"
+                    name="companyId"
+                    value="@company.id">
+              
+                <input id="addProductButton"
+                    type="submit"
+                    value="Add product">
+            }
+            
+            @tags.productTable(products, "products")
         
-        @tags.productTable(products, "products")
-    
-    </div>    
+        </div>
+    </div>
 }

@@ -3,16 +3,19 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.CompanyController.companies
+#GET     /                           controllers.CompanyController.companies
+
 GET     /companies                  controllers.CompanyController.companies
 POST    /companies                  controllers.CompanyController.addCompany
 
 GET     /companies/:id              controllers.CompanyController.company(id: Int)
-POST    /companies/:id              controllers.CompanyController.company(id: Int)
+POST    /companies/:id               controllers.ProductController.addProduct(id: Int)
 
-GET     /products                   controllers.ProductController.products
-POST    /products                   controllers.ProductController.addProduct
-POST    /searchProducts             controllers.ProductController.searchProducts
+#POST     /products              controllers.CompanyController.company(id: Int)
+#POST    /products                   controllers.ProductController.addProduct
+
+#GET     /products                   controllers.ProductController.products
+#POST    /searchProducts             controllers.ProductController.searchProducts
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
