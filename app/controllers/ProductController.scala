@@ -19,7 +19,10 @@ object ProductController extends Controller {
       product => {
         Product.create(product)
         Logger.debug("Created product: " + product)
-        Ok(views.html.company(Company.find(product.companyId)(0), Product.products(product.companyId), productForm))
+        Ok(views.html.company(
+          Company.find(product.companyId)(0),
+          Product.products(product.companyId),
+          productForm))
       })
   }
 
