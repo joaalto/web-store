@@ -10,10 +10,6 @@ import models._
 
 object ProductController extends Controller {
 
-  //  def products = Action {
-  //    Ok(views.html.product(Product.all(), productForm, filteredProducts, productSearchForm))
-  //  }
-
   def addProduct(companyId: Int) = Action { implicit request =>
     Logger.debug("Request: " + request)
 
@@ -28,25 +24,11 @@ object ProductController extends Controller {
   }
 
   val productForm = Form(getProductFieldMapping)
-  val productSearchForm = Form(getProductFieldMapping)
 
   def getProductFieldMapping = mapping(
     "Name" -> text,
     "Colour" -> text,
     "Size" -> text,
     "companyId" -> number)(Product.apply)(Product.unapply)
-
-  //  var filteredProducts: List[Product] = List()
-
-  //  def searchProducts = Action { implicit request =>
-  //    productForm.bindFromRequest().fold(
-  //      errors =>
-  //        BadRequest(views.html.errors(errors.toString)),
-  //      product => {
-  //        filteredProducts = Product.query(product)
-  //        Logger.debug("Filtered: " + filteredProducts)
-  //        Redirect(routes.ProductController.products)
-  //      })
-  //  }
 
 }

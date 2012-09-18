@@ -7,25 +7,5 @@
 @import helper._
 
 @main("Products") {
-  @*
-    @form(action = routes.ProductController.addProduct) {
-        @tags.productInputs(productForm)
-      
-        <input id="addProductButton"
-            type="submit"
-            value="Add product">
-    }
-    
-    @tags.productTable(products, "products")    
-    
-    @form(action = routes.ProductController.searchProducts) {
-        @tags.productInputs(searchProductForm)
-        
-        <input id="searchProductsButton"
-            type="submit"
-            value="Search products">
-    }
-  *@
-    @tags.productTable(filteredProducts, "filteredProducts")
   
 }
